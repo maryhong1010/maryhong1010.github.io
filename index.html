@@ -571,7 +571,7 @@ DATES.forEach((x,k)=>{
 });
 const dLabel=x=>`${x.d===21?'오늘 · ':''}10.${x.d} (${'일월화수목금토'[x.w]})`;
 const dayKwhOf=dd=>dd.today?todayKwh():dd.kwh;
-const SAVED=ls.get('alerts2',{});C.alerts.forEach(a=>{if(SAVED[a.id])Object.assign(a,SAVED[a.id])});
+
 const SW=ls.get('sw',{});C.loads.forEach(l=>{if(SW[l.id]!=null)l.on=SW[l.id]});
 const ldOf=id=>C.loads.find(l=>l.id===id);
 const unread=()=>C.alerts.filter(a=>a.status==='미확인');
@@ -581,7 +581,7 @@ const curKw=()=>C.today[NOW.h];
 const todayKwh=()=>Math.round(sum(C.today.slice(0,NOW.h))+C.today[NOW.h]*NOW.min/60);
 const baseSoFar=()=>Math.round(sum(C.base.slice(0,NOW.h))+C.base[NOW.h]*NOW.min/60);
 const loadPct=kw=>kw/C.contract*100;
-function persistA(a){SAVED[a.id]={status:a.status};ls.set('alerts2',SAVED)}
+function persistA(a){}
 
 /* ---------- 상태 · 내비게이션 ---------- */
 const S={stack:['home'],pwr:'hour',hSel:null,dSel:null,mSel:null,heatSel:null,baseK:'yoy',saveSeg:'save',repM:0,aF:'all',date:'2026-10-21',pDate:'2026-10-21'};
@@ -626,7 +626,7 @@ function donut(segs,size,stroke,center){
 const R={};
 R.home=()=>{
   const ls_=C.loads,mxL=ls_.reduce((m,l)=>l.leak>m.leak?l:m),mxT=ls_.reduce((m,l)=>l.temp>m.temp?l:m);
-  const kw=curKw(),pk=Math.max(...C.today.filter(v=>v!=null)),pkLv=lvOf(loadPct(pk),TH.load),ua=unread();
+  const kw=curKw(),pk=Math.max(...C.today.filter(v=>v!=null)),pkLv=lvOf(loadPct(pk),TH.load),ua=C.alerts.filter(a=>a.status!=='조치완료');
   const lvL=lvOf(mxL.leak,TH.leak),lvT=lvOf(mxT.temp,TH.temp),lvA=ua.some(a=>a.sev===2)?2:ua.some(a=>a.sev===1)?1:0,all=Math.max(lvL,lvT,pkLv,lvA);
   const tdy=todayKwh(),diff=(tdy-baseSoFar())/baseSoFar()*100;
   const card=(lv,ic,k,v,u,s,fn)=>`<button class="sc l${lv}" onclick="${fn}"><span class="h"><span>${k}</span><span class="dot t${lv}">${LVN[lv]}</span></span><span class="v num">${v}<small>${u}</small></span><span class="s">${s}</span><span class="lv l${lv}" aria-hidden="true"><i></i><i></i><i></i></span></button>`;
@@ -641,7 +641,7 @@ R.home=()=>{
     ${card(lvL,'leak','누설전류 최대',fmt(mxL.leak,1),'mA',`${mxL.name} · 주의 20mA`,"go('doctor')")}
     ${card(lvT,'therm','단자부 온도 최고',fmt(mxT.temp,1),'℃',`${mxT.name} · 주의 50℃`,"go('doctor')")}
     ${card(pkLv,'bolt','전력 사용량',fmt(kw),'kW',`피크 ${fmt(pk)}kW · 계약 ${Math.round(loadPct(pk))}%`,"go('power')")}
-    ${card(lvA,'bell','이상 알림',ua.length,'건',`미확인 · 반복 ${ua.filter(a=>repN(a)>1).length}건`,"go('alerts')")}
+    ${card(lvA,'bell','이상 알림',ua.length,'건',`미확인 ${unread().length}건 · 위험 ${ua.filter(a=>a.sev===2).length}건`,"go('alerts')")}
    </div>
    <nav class="menu" aria-label="메뉴">
     <button onclick="go('doctor')">${I('shield','mi')}<span class="grow">닥터일렉<small>누설전류 · 온도 · 이상징후 이력</small></span>${I('chevR','chev')}</button>

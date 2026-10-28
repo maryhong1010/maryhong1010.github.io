@@ -1,11 +1,11 @@
 <!doctype html>
 <html lang="ko"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
-<title>Dr.ELEC</title>
+<title>Dr. ELEC</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Dr.ELEC">
+<meta name="apple-mobile-web-app-title" content="Dr. ELEC">
 <meta name="theme-color" content="#141615">
 <link rel="apple-touch-icon" href="icon-180.png">
 <link rel="manifest" href="manifest.json">
@@ -195,11 +195,11 @@ button.row:active{background:var(--surf2)}
 .req svg{width:18px;height:18px}
 .mem{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
 .mc{background:var(--surf2);border-radius:20px;padding:18px 16px;position:relative;min-width:0}
-.mc .n{padding-right:34px;overflow:hidden;white-space:nowrap;display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800}
+.mc .n{padding-right:38px;overflow:hidden;white-space:nowrap;display:flex;align-items:center;gap:8px;font-size:16px;font-weight:800}
 .mc .n i{width:22px;height:22px;border-radius:50%;background:#E8D93C;color:#222;font-style:normal;font-size:12px;font-weight:900;display:grid;place-items:center}
 .mc .r{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);margin-top:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .mc .r span{min-width:0;overflow:hidden;text-overflow:ellipsis}.mc .r svg{width:15px;height:15px;color:var(--ink3)}
-.mc .bl{position:absolute;right:-4px;top:10px;width:36px;height:36px;border-radius:50%;background:#000;display:grid;place-items:center;color:#fff}
+.mc .bl{position:absolute;right:12px;top:13px;width:32px;height:32px;border-radius:50%;background:#000;display:grid;place-items:center;color:#fff}
 .mc .bl.off{color:var(--ink3)}
 .mc .bl svg{width:18px;height:18px}
 .mc .rl{display:inline-block;margin-top:10px;font-size:11px;font-weight:800;color:var(--teal);background:color-mix(in srgb,var(--teal) 14%,transparent);padding:3px 8px;border-radius:7px}
@@ -376,6 +376,12 @@ button:active{transform:scale(.97)}
 @keyframes blk{0%{color:var(--shield2)}100%{color:inherit}}
 .sh{will-change:transform}
 
+.bchips{display:flex;gap:6px}.bchips button{flex:1;border-radius:12px;background:var(--surf);color:var(--ink2);padding:10px 6px;font-size:12.5px;font-weight:700;text-align:center;white-space:nowrap}.bchips button.on{background:var(--teal-d);color:#fff}
+.svh .g3b em{display:block;font-style:normal;font-size:11px;color:var(--teal);margin-top:2px;font-weight:700}
+.svh .g3b b{font-size:15.5px}
+.ghost{padding:12px 14px;border-radius:14px;background:var(--surf2);font-size:12.5px;color:var(--ink2);line-height:1.55}
+.formula strong{color:var(--ink)}
+
 /* 전력 분석 화면 — 주황 계열 */
 .pw{--pwc:#EE9A45;--pwc2:#FFC27E}
 .pw .chart .bar{fill:var(--pwc)}
@@ -508,25 +514,21 @@ const SITE={name:'(주)핸즈온',panel:'메인분전반',contract:150,price:156
   {id:'04',name:'사무실전원S/W',leak:3.1,temp:29.4,share:.05,on:true,norm:100},
   {id:'05',name:'온수보일러',leak:22.4,temp:51.6,share:.18,on:true,norm:86}],
  alerts:[
-  {id:1,cat:'safety',kind:'누설전류 상승',sev:1,load:'05',time:'오늘 13:21',val:'22.4 mA',unit:'mA',th:TH.leak,rep:[0,1,0,0,1,0,1],need:1,status:'미확인',
-   cause:'보일러 가동이 시작되는 오전·오후 시간대에만 오릅니다. 히터 단자 또는 배관 접지부의 절연 열화가 의심됩니다.',act:'A/S 점검을 요청해 히터 절연저항을 측정하세요. 30mA를 넘으면 위험 알림으로 바뀌고 컨트롤에서 바로 차단할 수 있습니다.',
-   series:[15.2,15.8,16.9,17.6,18.8,19.7,20.6,21.3,21.9,22.4],slab:['12:00','12:20','12:40','13:00','13:21']},
-  {id:2,cat:'safety',kind:'단자부 온도 상승',sev:1,load:'05',time:'오늘 13:26',val:'51.6 ℃',unit:'℃',th:TH.temp,rep:[0,0,0,0,0,0,1],need:1,status:'미확인',
-   cause:'누설전류 상승과 같은 회로에서 함께 발생했습니다. 단자 체결이 느슨하면 접촉저항이 커져 온도가 오릅니다.',act:'1번 알림 점검 때 단자 체결 상태도 함께 확인하도록 요청하세요.',
-   series:[42.3,43.1,44.6,46.0,47.5,48.9,50.2,51.0,51.6],slab:['12:10','12:30','12:50','13:10','13:26']},
-  {id:3,cat:'power',kind:'피크 근접',sev:1,load:'02',time:'어제 14:10',val:'128 kW · 계약전력 85.3%',unit:'kW',th:[127.5,142.5],rep:[1,1,0,1,0,1,0],need:1,status:'미확인',
-   cause:'평일 14~15시에 부하2와 온수보일러가 동시에 최대로 운전되며 피크가 납니다. 최근 7일 중 4일 반복됐습니다.',act:'온수보일러 가열을 13시 30분 이전에 끝내도록 시간을 옮기면 피크를 약 12kW 낮출 수 있습니다.',
-   series:[104,109,114,118,122,125,128,126,121,116],slab:['13:20','13:40','14:00','14:10','14:30']},
-  {id:4,cat:'power',kind:'비작업시간 대기전력 증가',sev:0,load:'04',time:'오늘 06:00',val:'야간 평균 1.8 kW (기준 0.6 kW)',unit:'kW',ref:[0.6,'기준기간 야간 평균 0.6kW'],rep:[1,1,1,0,1,1,1],need:0,status:'미확인',
-   cause:'22~06시 사무실전원 사용량이 평소의 3배입니다. 최근 7일 중 6일, 퇴근 후에도 냉난방기와 PC가 켜져 있었습니다.',act:'컨트롤에서 사무실전원S/W를 퇴근 후 끄면 하루 약 10kWh, 월 약 4만 5천원을 아낄 수 있습니다.',
-   series:[1.7,1.8,1.8,1.9,1.8,1.7,1.8,1.8],slab:['22시','00시','02시','04시','06시']},
-  {id:5,cat:'power',kind:'휴일 사용량 급증',sev:0,load:'01',time:'10월 11일 (일)',val:'236 kWh · 평소 휴일 대비 +58%',unit:'kWh',rep:[0,0,0,0,0,0,0],need:0,status:'조치완료',label:'real',memo:'일요일 특근 작업 확인(생산팀). 정상 운영으로 처리.',
-   series:[148,152,145,155,236],slab:['9/13','9/20','9/27','10/4','10/11']},
-  {id:6,cat:'safety',kind:'순간 누설 스파이크',sev:1,load:'01',time:'10월 8일',val:'23.8 mA (2초)',unit:'mA',th:TH.leak,rep:[0,0,0,0,0,0,0],need:0,status:'조치완료',label:'false',memo:'설비 기동 순간 발생. 이후 6mA대로 안정.',
-   series:[6.1,6.3,6.0,23.8,6.4,6.2],slab:['09:00','09:01','09:02','09:03']}],
+  {id:1,cat:'safety',title:'분전반 2 누설전류 상승',loc:'제1분전반',time:'10:24',val:'28.4mA',unit:'mA',th:TH.leak,sev:2,need:2,rep:[0,0,0,1,0,1,1],status:'미확인',
+   cause:'누설전류가 위험 기준(30mA)에 근접한 28.4mA까지 상승했습니다.',act:'해당 회로의 절연 상태를 즉시 점검해 주세요.',
+   series:[18.2,19.6,21.4,23.0,24.8,26.1,27.3,28.4],slab:['09:50','10:00','10:10','10:24']},
+  {id:2,cat:'safety',title:'센서 데이터 수신 끊김',loc:'제1분전반',time:'09:51',val:'5분 이상',unit:'',sev:1,need:1,rep:[0,0,0,0,0,0,1],status:'미확인',
+   cause:'센서 데이터가 5분 이상 수신되지 않았습니다.',act:'센서 전원과 통신 연결 상태를 점검해 주세요.',
+   series:[1,1,1,1,1,0,0,0],slab:['09:40','09:45','09:51','09:56']},
+  {id:3,cat:'power',title:'차단기 회로 피크 증가',loc:'제1분전반 · 차단기 회로 A',time:'09:40',val:'최근 평균 대비 +12%',unit:'kW',ref:[16.7,'최근 평균 16.7kW'],sev:0,need:0,rep:[1,0,0,1,0,0,1],status:'미확인',
+   cause:'차단기 회로 A의 피크가 최근 평균보다 12% 높게 나타났습니다.',act:'해당 회로 설비의 운전 시간과 부하 중첩 여부를 확인해 주세요.',
+   series:[14.2,15.1,16.4,17.3,18.1,18.7,18.4,17.9],slab:['09:00','09:20','09:40','10:00']},
+  {id:4,cat:'power',title:'비가동 시간대 전력 사용',loc:'제1분전반 · 차단기 회로 B',time:'03:20',val:'평소보다 높은 사용량',unit:'kW',ref:[1.2,'평소 야간 평균 1.2kW'],sev:0,need:0,rep:[0,1,0,0,1,0,1],status:'미확인',
+   cause:'비가동 시간대에 차단기 회로 B의 사용량이 평소보다 높게 나타났습니다.',act:'불필요한 설비 가동 여부를 확인해 주세요.',
+   series:[1.2,1.3,2.6,2.9,3.1,3.0,2.8,2.7],slab:['00:00','01:00','02:00','03:20']}],
  members:[
-  {name:'박선국대표',mail:'83170**@naver.com',tel:'010-****-0171',role:'대표 · 위험 알림',bell:true},
-  {name:'마스터',mail:'brandnew100@gmail.com',tel:'010-****-1510',role:'관리자 · 모든 알림',bell:true}]
+  {name:'김OO 대표',mail:'kim00@example.com',tel:'010-1234-5678',role:'대표 · 위험 알림',bell:true},
+  {name:'마스터',mail:'drelec1122@gmail.com',tel:'010-9876-5432',role:'관리자 · 모든 알림',bell:true}]
 };
 const SHAPE_WE=[.30,.29,.28,.28,.29,.30,.31,.33,.36,.38,.39,.38,.36,.37,.38,.37,.35,.33,.32,.31,.31,.30,.30,.30]; // 주말: 상시부하(공조·보일러 보온·서버)만
 const SHAPE=[.30,.29,.28,.29,.31,.36,.52,.74,.88,.93,.95,.90,.76,.92,.99,1,.96,.88,.62,.44,.38,.35,.33,.31];
@@ -569,7 +571,7 @@ DATES.forEach((x,k)=>{
 });
 const dLabel=x=>`${x.d===21?'오늘 · ':''}10.${x.d} (${'일월화수목금토'[x.w]})`;
 const dayKwhOf=dd=>dd.today?todayKwh():dd.kwh;
-const SAVED=ls.get('alerts',{});C.alerts.forEach(a=>{if(SAVED[a.id])Object.assign(a,SAVED[a.id])});
+const SAVED=ls.get('alerts2',{});C.alerts.forEach(a=>{if(SAVED[a.id])Object.assign(a,SAVED[a.id])});
 const SW=ls.get('sw',{});C.loads.forEach(l=>{if(SW[l.id]!=null)l.on=SW[l.id]});
 const ldOf=id=>C.loads.find(l=>l.id===id);
 const unread=()=>C.alerts.filter(a=>a.status==='미확인');
@@ -579,7 +581,7 @@ const curKw=()=>C.today[NOW.h];
 const todayKwh=()=>Math.round(sum(C.today.slice(0,NOW.h))+C.today[NOW.h]*NOW.min/60);
 const baseSoFar=()=>Math.round(sum(C.base.slice(0,NOW.h))+C.base[NOW.h]*NOW.min/60);
 const loadPct=kw=>kw/C.contract*100;
-function persistA(a){SAVED[a.id]={status:a.status,label:a.label,memo:a.memo};ls.set('alerts',SAVED)}
+function persistA(a){SAVED[a.id]={status:a.status};ls.set('alerts2',SAVED)}
 
 /* ---------- 상태 · 내비게이션 ---------- */
 const S={stack:['home'],pwr:'hour',hSel:null,dSel:null,mSel:null,heatSel:null,baseK:'yoy',saveSeg:'save',repM:0,aF:'all',date:'2026-10-21',pDate:'2026-10-21'};
@@ -589,7 +591,7 @@ function back(){if(S.stack.length>1){S.stack.pop();render(false,'back')}}
 function home(){S.stack=['home'];render()}
 
 function hd(title){
-  if(!title)return `<header class="hd"><img class="logo" src="${LOGO}" alt="Dr.ELEC"><button class="site" onclick="openSites()">${C.name}${I('chevD')}</button><span class="r"><button class="ib" aria-label="알림 ${unread().length}건" onclick="go('alerts')">${I('bell')}${unread().length?`<span class="badge">${unread().length}</span>`:''}</button><button class="ib" aria-label="전체 메뉴" onclick="openMenu()">${I('menu')}</button></span></header>`;
+  if(!title)return `<header class="hd"><img class="logo" src="${LOGO}" alt="Dr. ELEC"><button class="site" onclick="openSites()">${C.name}${I('chevD')}</button><span class="r"><button class="ib" aria-label="알림 ${unread().length}건" onclick="go('alerts')">${I('bell')}${unread().length?`<span class="badge">${unread().length}</span>`:''}</button><button class="ib" aria-label="전체 메뉴" onclick="openMenu()">${I('menu')}</button></span></header>`;
   return `<header class="hd"><button class="ib" aria-label="뒤로" onclick="back()">${I('back')}</button>${title==='site'?`<button class="site" onclick="openSites()">${C.name}${I('chevD')}</button>`:`<span class="ttl">${title}</span>`}<span></span></header>`;
 }
 const sec=(t,m)=>`<div class="sec"><h2>${t}</h2>${m||''}</div>`;
@@ -634,7 +636,7 @@ R.home=()=>{
     <span class="state t${all}"><i></i>${['전체 정상',`주의 설비 ${warnN}곳`,'위험 설비 확인 필요'][all]}</span></div>
    <div class="bld"><img src="${BLD}" alt="${C.name} 사업장 3D 모델"></div>
    <div class="btags"><span class="tag t${all}"><i></i>${C.panel} <b>${LVN[all]}</b></span><span class="tag tb"><i class="lv-dot"></i>지금 <b class="num" id="liveKw">${fmt(kw)} kW</b></span><span class="tag t0"><i></i>오늘 <b class="num">${fmt(tdy)} kWh</b> · 기준 대비 ${pctTxt(diff)}</span></div>
-   ${sec('설비 상태','<span class="m" id="upd">방금 업데이트</span>')}
+   ${sec('설비 상태','<span class="m">10월 21일 '+nowHM()+' 기준</span>')}
    <div class="cards">
     ${card(lvL,'leak','누설전류 최대',fmt(mxL.leak,1),'mA',`${mxL.name} · 주의 20mA`,"go('doctor')")}
     ${card(lvT,'therm','단자부 온도 최고',fmt(mxT.temp,1),'℃',`${mxT.name} · 주의 50℃`,"go('doctor')")}
@@ -644,8 +646,8 @@ R.home=()=>{
    <nav class="menu" aria-label="메뉴">
     <button onclick="go('doctor')">${I('shield','mi')}<span class="grow">닥터일렉<small>누설전류 · 온도 · 이상징후 이력</small></span>${I('chevR','chev')}</button>
     <button onclick="go('power')">${I('chart','mi')}<span class="grow"><span>전력 분석<span class="new">NEW</span></span><small>시간대 · 일 · 월 사용량 · 피크 시간대</small></span>${I('chevR','chev')}</button>
-    <button onclick="go('save')">${I('coin','mi')}<span class="grow"><span>절감 리포트<span class="new">NEW</span></span><small>기준기간 대비 절감량 · 월간 요약</small></span>${I('chevR','chev')}</button>
-    <button onclick="go('alerts')">${I('bell','mi')}<span class="grow"><span>알림<span class="new">NEW</span></span><small>전기안전 알림 · 전력 이상징후 구분</small></span>${I('chevR','chev')}</button>
+    <button onclick="go('save')">${I('coin','mi')}<span class="grow"><span>절감 리포트<span class="new">NEW</span></span><small>비교기간 대비 전력 변화 · 월간 요약</small></span>${I('chevR','chev')}</button>
+    <button onclick="go('alerts')">${I('bell','mi')}<span class="grow"><span>알림<span class="new">NEW</span></span><small>안전 이상 · 사용 이상 구분</small></span>${I('chevR','chev')}</button>
     <button onclick="go('control')">${I('power','mi')}<span class="grow">컨트롤<small>부하별 원격 차단 · 전체 차단</small></span>${I('chevR','chev')}</button>
     <button onclick="go('admin')">${I('lock','mi')}<span class="grow">보안 및 관리자<small>회원 수락 · 관리자 관리</small></span>${I('chevR','chev')}</button>
    </nav>
@@ -709,14 +711,14 @@ R.doctor=()=>{
   </div>`;
 };
 function openLoad(id){
-  const dd=DD[S.date]||DD['2026-10-21'],q=dd.loads.find(z=>z.l.id===id),l=q.l,al=C.alerts.filter(a=>a.load===id),end=dd.today?NOW.h:23;
+  const dd=DD[S.date]||DD['2026-10-21'],q=dd.loads.find(z=>z.l.id===id),l=q.l,al=[],end=dd.today?NOW.h:23;
   const act=q.hourly.slice(0,end+1),amx=Math.max(...act),base0=q.leak*(dd.we?.85:.42),r=rng(+id*7+dd.d);
   const lk=act.map((v,i)=>+(base0+(q.leak-base0)*(v/amx)*(1+(r()-.5)*.04)).toFixed(1));const mi=lk.indexOf(Math.max(...lk));lk[mi]=q.leak;
   const sl=dd.today?['0시','6시','12시',nowHM()]:['0시','6시','12시','18시','23시'];
   sheet(`${l.name} · ${dLabel(dd)}`,`<div class="gap"></div>
    <div class="facts"><div><span>상태</span><b style="color:${['var(--teal)','var(--yellow)','var(--red)'][q.lv]}">${LVN[q.lv]}</b></div><div><span>${dd.today?'현재 전력':'최대 전력'}</span><b class="num">${dd.today&&!l.on?'차단됨':fmt(q.kw,1)+' kW'}</b></div><div><span>${dd.today?'누설전류':'최대 누설전류'}</span><b class="num">${fmt(q.leak,1)} mA</b></div><div><span>${dd.today?'단자부 온도':'최고 온도'}</span><b class="num">${fmt(q.temp,1)} ℃</b></div></div>
    ${sec('시간대별 누설전류')}<div class="box">${lineChart({series:lk,th:TH.leak,unit:'mA',sev:q.lv,slab:sl})}</div>
-   ${sec('시간대별 전력')}<div class="box">${lineChart({series:act,unit:'kW',sev:0,slab:sl})}<div class="note">${dd.we?'휴무일이라 상시부하만 측정됐습니다.':'누설전류는 설비 가동량을 따라 오르내립니다. 가동이 없는 시간에도 높으면 절연 이상을 의심합니다.'}</div></div>
+   ${sec('시간대별 전력')}<div class="box">${lineChart({series:act,unit:'kW',sev:0,slab:sl})}<div class="note">${dd.we?'휴무일이라 상시부하만 측정됐습니다.':'누설전류는 설비 가동량을 따라 오르내립니다. 가동이 없는 시간에도 높게 유지되면 점검이 필요합니다.'}</div></div>
    ${sec(`알림 이력 ${al.length}건`)}${al.length?`<div class="box p0">${al.map(alertRow).join('')}</div>`:'<div class="note">이 제품에서 발생한 알림이 없습니다.</div>'}
    <div class="gap2"></div><button class="btn btn-s" onclick="closeSheet();go('control')">${I('power')}컨트롤에서 차단·복구</button>`);
 }
@@ -784,7 +786,8 @@ R.power=()=>{
 };
 
 /* ---------- 절감 리포트 ---------- */
-const BASES={yoy:{n:'작년 동월',d:'2025년 10월 1~20일',adj:0},m3:{n:'직전 3개월',d:'2026년 7~9월 일평균',adj:-2.8},pre:{n:'도입 전',d:'2026년 1~3월 일평균',adj:3.9}};
+const BASES={yoy:{n:'전년 동월',d:'2025년 10월 1~20일',adj:0,desc:'작년 같은 기간과 비교'},m3:{n:'최근 3개월 평균',d:'2026년 7~9월 일평균',adj:-2.8,desc:'최근 사용 수준과 비교'},pre:{n:'직접 선택',d:'2026년 1~3월 일평균',adj:3.9,desc:'원하는 비교기간 지정'}};
+const CUSTOM=[['2026년 1~3월 일평균',3.9],['2026년 4~6월 일평균',1.6],['2025년 9월',-.8]];
 function saving(k){
   const adj=BASES[k].adj,rows=C.mDays.map(r=>({...r,b:Math.round(r.a/(1-(C.rate+adj)/100)*(r.d===11?1/1.58:1))}));
   const B=sum(rows.map(r=>r.b)),A=sum(rows.map(r=>r.a)),kwh=B-A,pkNow=Math.max(...C.heat.flat()),pkBase=Math.round(pkNow/(1-(C.rate+adj)/100*.6));
@@ -802,36 +805,35 @@ function cumChart(rows){
   return `<div class="chart">${s}</svg></div>`;
 }
 R.save=()=>{
-  const seg=`<div class="seg"><button class="${S.saveSeg==='save'?'on':''}" onclick="S.saveSeg='save';render(true)">${I('coin')}절감 효과</button><button class="${S.saveSeg==='report'?'on':''}" onclick="S.saveSeg='report';render(true)">${I('doc')}월간 리포트</button></div><div class="gap"></div>`;
-  return hd('site')+`<div class="scr">${seg}${S.saveSeg==='save'?saveBody():reportBody()}</div>`;
+  const seg=`<div class="seg"><button class="${S.saveSeg==='save'?'on':''}" onclick="S.saveSeg='save';render(true)">전력 변화</button><button class="${S.saveSeg==='report'?'on':''}" onclick="S.saveSeg='report';render(true)">월간 리포트</button></div><div class="gap"></div>`;
+  return hd('절감 리포트')+`<div class="scr">${seg}${S.saveSeg==='save'?saveBody():reportBody()}</div>`;
 };
+/* 전력 변화 산출값 — 수정안(DrELEC_revised_screens_v2) 기준 */
+const PERIOD={kwh:18950,pk:76.1,label:'10월 1~20일'};
+const BASE_V={yoy:{kwh:20420,pk:82.4},m3:{kwh:19870,pk:80.2},
+ 'c0':{kwh:20680,pk:83.1},'c1':{kwh:19610,pk:79.4},'c2':{kwh:19340,pk:78.6}};
+const CIRCUITS=[{n:'차단기 회로 A',pk:18.7,ch:21.4,w:82,c:'var(--orange)'},{n:'차단기 회로 B',pk:9.1,ch:11.0,w:56,c:'var(--yellow)'},{n:'차단기 회로 C',pk:22.8,ch:-5.4,w:73,c:'var(--teal)'}];
 function saveBody(){
-  const k=S.baseK,s=saving(k),b=BASES[k],wkd=s.rows.filter(r=>r.w&&r.w<6).length;
-  const ps=C.loads.map(l=>({l,ch:(l.kwh-l.baseKwh)/l.baseKwh*100})).sort((a,b)=>a.ch-b.ch),cmx=Math.max(...ps.map(x=>Math.abs(x.ch)));
-  return `<div class="seg" aria-label="기준기간">${Object.entries(BASES).map(([kk,v])=>`<button class="${kk===k?'on':''}" onclick="S.baseK='${kk}';render(true)">${v.n}</button>`).join('')}</div><div class="gap"></div>
-   <section class="svh"><div class="k">10월 1~20일 · 기준기간 ${esc(b.d)}</div>
-    <div class="big num">${fmt(s.kwh)}<small>kWh 절감</small><span class="rt">${I('trend')}${fmt(s.rate,1)}%</span></div>
-    <div class="g3"><div><span>예상 절감액</span><b class="num">${fmt(s.won/10000,1)}만원</b></div><div><span>최대 피크</span><b class="num">${fmt(s.pkNow)} kW</b></div><div><span>피크 변화</span><b class="num">−${fmt(s.pkBase-s.pkNow)} kW</b></div></div></section>
-   ${sec('사용량 비교')}
-   <div class="box cmp"><div><div class="ct"><span>기준기간 (일수·요일 보정)</span><b class="num">${fmt(s.B)} kWh</b></div><div class="b2"><i style="width:100%;background:var(--base)"></i></div></div>
-    <div><div class="ct"><span>이번 기간 실제</span><b class="num">${fmt(s.A)} kWh</b></div><div class="b2"><i style="width:${(s.A/s.B*100).toFixed(1)}%;background:var(--teal)"></i></div></div>
-    <div><div class="ct"><span>최대 피크 (기준 → 이번)</span><b class="num">${fmt(s.pkBase)} → ${fmt(s.pkNow)} kW</b></div><div class="b2"><i style="width:${(s.pkNow/s.pkBase*100).toFixed(1)}%;background:var(--shield)"></i></div></div></div>
-   ${sec('누적 사용량 추이')}
-   <div class="box"><div class="ckey"><span><i class="kl"></i>이번 달 실제</span><span><i class="kd"></i>기준기간</span><span><i class="kb" style="opacity:.35"></i>절감분</span></div>${cumChart(s.rows)}</div>
-   ${sec('부하별 증감','<span class="m">기준기간 대비</span>')}
-   <div class="box"><div class="dv">${ps.map(({l,ch})=>`<div class="dr"><span>${esc(l.name)}</span><span class="ax"><i class="${ch<0?'neg':'pos'}" style="width:${(Math.abs(ch)/cmx*50).toFixed(1)}%"></i></span><span class="vl num ${ch<0?'dn':'up'}">${pctTxt(ch)}</span></div>`).join('')}</div>
-    <div class="ckey" style="margin:14px 0 0"><span><i class="kb"></i>감소</span><span><i class="kb" style="background:var(--orange)"></i>증가</span></div></div>
-   ${sec('산출 방식')}
-   <div class="box formula">기준기간 사용량을 이번 기간과 같은 구성(평일 ${wkd}일, 휴일 ${s.rows.length-wkd}일)으로 보정한 뒤 실제 사용량과 비교합니다.
-    <code>절감량 = 보정 기준기간 사용량 − 이번 기간 사용량<br>절감률 = 절감량 ÷ 보정 기준기간 사용량<br>절감액 = 절감량 × 평균 적용단가 (${C.price}원/kWh)</code>
-    기본요금과 계절·시간대별 단가 차이는 아직 반영하지 않습니다.</div>
-   ${sec('산출 고도화 계획')}
-   <div class="box p0 rm">
-    <div class="row">${I('check')}<span class="main"><span class="t">기준기간 대비 사용량 차이</span><span class="s">일수·요일 보정 · 기준기간 3종 선택</span></span><span class="chip ok">적용 중</span></div>
-    <div class="row">${I('gauge')}<span class="main"><span class="t">계약전력 · 기본요금 반영</span><span class="s">피크 감소분을 기본요금 절감액으로 환산</span></span><span class="chip">확장 예정</span></div>
-    <div class="row">${I('clock')}<span class="main"><span class="t">고객별 요금제 반영</span><span class="s">계절·시간대별(경부하·중간·최대부하) 단가</span></span><span class="chip">확장 예정</span></div>
-    <div class="row">${I('sliders')}<span class="main"><span class="t">설비 특성 · 외기온도 보정</span><span class="s">가동시간·기온 변화 영향 분리</span></span><span class="chip">확장 예정</span></div></div>`;
+  const k=S.baseK,b=BASES[k],bv=BASE_V[k==='pre'?(S.custom||'c0'):k],dk=bv.kwh-PERIOD.kwh,rate=dk/bv.kwh*100,dp=+(bv.pk-PERIOD.pk).toFixed(1);
+  const lbl=k==='yoy'?'전년 동월':k==='m3'?'최근 3개월 평균':b.d,phrase=k==='yoy'?'전년 같은 기간':k==='m3'?'최근 3개월 평균':'선택한 비교기간';
+  return `<div class="bchips" role="tablist" aria-label="비교 기준">${Object.entries(BASES).map(([kk,v])=>`<button class="${kk===k?'on':''}" onclick="${kk==='pre'?'openCustom()':`S.baseK='${kk}';render(true)`}">${v.n}</button>`).join('')}</div><div class="gap"></div>
+   <section class="svh"><div class="k">사업장 전체 · 한전 데이터 기준 · ${PERIOD.label}</div>
+    <div class="big num">${fmt(dk)}<small>kWh 감소</small></div>
+    <div class="g3 g3b"><div><span>사업장 전력 사용량</span><b class="num">${fmt(PERIOD.kwh)} kWh</b><em>▼ ${fmt(rate,1)}%</em></div><div><span>사업장 최대수요전력</span><b class="num">${fmt(PERIOD.pk,1)} kW</b><em>▼ ${fmt(dp,1)} kW</em></div><div><span>전기요금</span><b>연동 후 표시</b><em>한전 요금정보</em></div></div></section>
+   ${sec('사업장 전체 비교',`<span class="m">한전 데이터 · ${k==='pre'?'선택 기간':esc(b.n)} 대비</span>`)}
+   <div class="box cmp"><div><div class="ct"><span>${esc(lbl)}</span><b class="num">${fmt(bv.kwh)} kWh</b></div><div class="b2"><i style="width:100%;background:var(--base)"></i></div></div>
+    <div><div class="ct"><span>이번 기간</span><b class="num">${fmt(PERIOD.kwh)} kWh</b></div><div class="b2"><i style="width:${(PERIOD.kwh/bv.kwh*100).toFixed(1)}%;background:var(--teal)"></i></div></div>
+    <div><div class="ct"><span>최대수요전력</span><b class="num">${fmt(bv.pk,1)} → ${fmt(PERIOD.pk,1)} kW</b></div><div class="b2"><i style="width:${(PERIOD.pk/bv.pk*100).toFixed(1)}%;background:var(--blue)"></i></div></div></div>
+   ${sec('한눈에 보기')}
+   <div class="box"><div style="font-size:15px;font-weight:800;line-height:1.5">${phrase}보다 사업장 전체 전력 사용량이 <span style="color:var(--teal)">${fmt(rate,1)}% 감소</span>했습니다.</div><div class="note" style="margin-top:8px">사업장 최대수요전력도 ${fmt(dp,1)} kW 낮아졌습니다. 전기요금 변화는 한전 요금정보 연동 후 표시합니다.</div></div>
+   ${sec('설치 회로별 전력 사용','<span class="m">닥터일렉 계측 데이터</span>')}
+   <div class="box"><div class="ghost">※ 닥터일렉 장비가 설치된 차단기 회로만 표시합니다. 아래 값은 분전반 전체 사용량을 의미하지 않습니다.</div>
+    <div class="cmp" style="margin-top:14px">${CIRCUITS.map(x=>`<div><div class="ct"><span>${x.n}</span><b class="num">피크 ${fmt(x.pk,1)} kW · ${x.ch>0?'▲':'▼'} ${fmt(Math.abs(x.ch),1)}%</b></div><div class="b2"><i style="width:${x.w}%;background:${x.c}"></i></div></div>`).join('')}</div></div>
+   ${sec('비교 기준')}
+   <div class="box formula">${Object.values(BASES).map(v=>`<strong>${v.n}</strong> · ${v.desc}`).join('<br>')}
+    <div class="ghost" style="margin-top:12px">※ 사업장 전체 지표는 한전 데이터 기준이며, 닥터일렉 상세 분석은 장비가 설치된 차단기 회로만을 대상으로 합니다. 사용량 변화는 가동시간, 생산량, 계절 등 운영조건에 따라 달라질 수 있습니다.</div></div>`;
 }
+function openCustom(){sheet('비교기간 직접 선택',`<div class="gap"></div><div class="box p0">${CUSTOM.map(([d],i)=>`<button class="row" onclick="BASES.pre.d='${d}';S.custom='c${i}';S.baseK='pre';closeSheet();render(true)">${I('clock')}<span class="main"><span class="t">${d}</span></span>${S.baseK==='pre'&&S.custom==='c${i}'?`<span style="color:var(--teal)">${I('check')}</span>`:''}</button>`).join('')}</div><div class="note">이번 기간(10월 1~20일)과 비교할 기간을 고르세요.</div>`)}
 const REP=[9,8,7];
 let monthRep=function(m){
   const r=rng(C.seed*31+m),x=C.months.find(q=>q.y===2026&&q.m===m),days=m===9?30:31,saving=x.prev-x.v;
@@ -840,46 +842,43 @@ let monthRep=function(m){
    nS:Math.round(2+r()*4),nP:Math.round(2+r()*4),doneR:Math.round(80+r()*18),weeks:[0,1,2,3,4].map(i=>Math.round(x.v/days*(i===4?days-28:7)*(1+(r()-.5)*.1))),
    risk:C.loads.map(l=>({l,n:Math.round((l.lv*2+1)*(1+r()*2)),mx:+(l.leak*(1+(r()-.3)*.15)).toFixed(1)})).sort((a,b)=>b.n-a.n)};
 }
-const _mr=monthRep;monthRep=function(m){const d=_mr(m),t=sum(d.risk.map(x=>x.n));d.nP=Math.round(t*.42);d.nS=t-d.nP;return d};
+const _mr=monthRep;monthRep=function(m){const d=_mr(m),t=sum(d.risk.map(x=>x.n));{const f=d.kwh/sum(d.weeks);d.weeks=d.weeks.map(w=>Math.round(w*f));d.weeks[0]+=d.kwh-sum(d.weeks)}d.nP=Math.round(t*.42);d.nS=t-d.nP;return d};
 function reportBody(){
   const m=REP[S.repM],d=monthRep(m),wmx=Math.max(...d.weeks);
   return `<div class="seg">${REP.map((mm,i)=>`<button class="${i===S.repM?'on':''}" onclick="S.repM=${i};render(true)">${mm}월</button>`).join('')}</div><div class="gap"></div>
    <div class="tiles">
     <div class="tile"><span class="k">${I('bolt')}전력 사용량</span><div class="val num">${fmt(d.kwh)}<small>kWh</small></div><div class="sub">전년 동월 ${fmt(d.prev)} kWh</div></div>
-    <div class="tile"><span class="k">${I('coin')}절감액</span><div class="val num">${fmt(d.won/10000,1)}<small>만원</small></div><div class="sub">절감률 ${fmt(d.rate,1)}%</div></div>
+    <div class="tile"><span class="k">${I('trend')}전년 동월 대비</span><div class="val num">▼ ${fmt(d.rate,1)}<small>%</small></div><div class="sub">${fmt(d.saving)} kWh 감소</div></div>
     <div class="tile"><span class="k">${I('gauge')}최대 피크</span><div class="val num">${fmt(d.pk)}<small>kW</small></div><div class="sub">${d.pkDay}</div></div>
-    <div class="tile"><span class="k">${I('bell')}알림</span><div class="val num">${d.nS+d.nP}<small>건</small></div><div class="sub">전기안전 ${d.nS} · 전력 이상 ${d.nP}</div></div></div>
+    <div class="tile"><span class="k">${I('bell')}알림</span><div class="val num">${d.nS+d.nP}<small>건</small></div><div class="sub">안전 이상 ${d.nS} · 사용 이상 ${d.nP}</div></div></div>
    ${sec('주차별 사용량','<span class="m">kWh</span>')}
    <div class="box"><div class="hb">${d.weeks.map((w,i)=>`<div><span class="ht"><span>${i+1}주차${i===4?` (${d.days-28}일)`:''}</span><span class="num">${fmt(w)}</span></span><span class="tr"><span class="fl" style="width:${(w/wmx*100).toFixed(1)}%"></span></span></div>`).join('')}</div></div>
-   ${sec('부하별 알림 현황','<span class="m">이번 달 발생 건수</span>')}
-   <div class="box p0">${d.risk.map((x,i)=>`<button class="row" onclick="openLoad('${x.l.id}')"><span class="rank">${i+1}</span><span class="main"><span class="t">${esc(x.l.name)}</span><span class="s">최대 누설 ${fmt(x.mx,1)}mA</span></span><span class="num" style="font-weight:800">${x.n}건</span></button>`).join('')}</div>
+   ${sec('설치 회로별 알림 현황','<span class="m">이번 달 발생 건수</span>')}
+   <div class="box p0">${d.risk.map((x,i)=>`<button class="row" onclick="openLoad('${x.l.id}')"><span class="rank">${i+1}</span><span class="main"><span class="t">${esc(x.l.name)} 회로</span><span class="s">최대 누설 ${fmt(x.mx,1)}mA</span></span><span class="num" style="font-weight:800">${x.n}건</span></button>`).join('')}</div>
    <p class="demo">월간 요약 리포트는 매월 1일에 갱신됩니다.</p>`;
 }
 
 /* ---------- 알림 ---------- */
-const catTag=a=>a.cat==='safety'?`<span class="cat safety">${I('shield')}전기안전</span>`:`<span class="cat power">${I('trend')}전력 이상징후</span>`;
+const catTag=a=>a.cat==='safety'?`<span class="cat safety">${I('shield')}안전 이상</span>`:`<span class="cat power">${I('trend')}사용 이상</span>`;
 const sevTxt=a=>a.cat==='power'&&a.sev===0?'안내':LVN[a.sev];
 const sevCls=a=>a.cat==='power'&&a.sev===0?'tb':'t'+a.sev;
+const needTxt=a=>a.cat==='power'&&a.need===0?'해당 회로 확인':['관찰','점검 권장','즉시 조치'][a.need];
 function alertRow(a){
-  const l=ldOf(a.load),done=a.status==='조치완료';
-  return `<button class="ar ${done?'done':''} ${done?'tg':sevCls(a)}" onclick="openAlert(${a.id})"><span class="sb"></span><span class="main"><span class="tags">${catTag(a)}${done?'<span class="pill tg">조치완료</span>':`<span class="pill ${sevCls(a)}">${sevTxt(a)}</span>`}${repN(a)>1?`<span class="rep">${I('repeat')}7일간 ${repN(a)}회</span>`:''}</span>
-   <span class="t">${esc(l.name)} ${esc(a.kind)}</span><span class="s">${C.panel} · ${esc(a.time)} · ${esc(a.val)}</span>${done?'':`<span class="need ${['tg','t1','t2'][a.need]}">${['조치 불필요 · 관찰','점검 권장','즉시 조치'][a.need]}${a.status!=='미확인'?` · ${a.status}`:''}</span>`}</span>${I('chevR','chev')}</button>`;
+  return `<button class="ar ${sevCls(a)}" onclick="openAlert(${a.id})"><span class="sb"></span><span class="main"><span class="tags">${catTag(a)}<span class="pill ${sevCls(a)}">${sevTxt(a)}</span></span>
+   <span class="t">${esc(a.title)}</span><span class="s">${esc(a.loc)} · ${esc(a.time)} · ${esc(a.val)}</span><span class="need ${a.cat==='power'&&a.need===0?'tb':['tg','t1','t2'][a.need]}">${needTxt(a)}</span></span>${I('chevR','chev')}</button>`;
 }
 R.alerts=()=>{
-  const f=S.aF,list=C.alerts.filter(a=>f==='all'||a.cat===f),open=list.filter(a=>a.status!=='조치완료').sort((a,b)=>b.need-a.need||b.sev-a.sev),done=list.filter(a=>a.status==='조치완료');
+  const f=S.aF,list=C.alerts.filter(a=>f==='all'||a.cat===f),open=list.slice();
   const cnt=k=>C.alerts.filter(a=>(k==='all'||a.cat===k)&&a.status!=='조치완료').length;
-  const byAll=Object.entries(C.alerts.reduce((m,a)=>{m[a.load]=(m[a.load]||0)+Math.max(1,repN(a));return m},{})).sort((a,b)=>b[1]-a[1]),byLoad=byAll.slice(0,3);
   return hd('알림')+`<div class="scr">
-   <div class="seg"><button class="${f==='all'?'on':''}" onclick="S.aF='all';render(true)">전체 <span class="n">${cnt('all')}</span></button><button class="${f==='safety'?'on':''}" onclick="S.aF='safety';render(true)">전기안전 <span class="n">${cnt('safety')}</span></button><button class="${f==='power'?'on':''}" onclick="S.aF='power';render(true)">전력 이상 <span class="n">${cnt('power')}</span></button></div>
+   <div class="seg"><button class="${f==='all'?'on':''}" onclick="S.aF='all';render(true)">전체 <span class="n">${cnt('all')}</span></button><button class="${f==='safety'?'on':''}" onclick="S.aF='safety';render(true)">안전 이상 <span class="n">${cnt('safety')}</span></button><button class="${f==='power'?'on':''}" onclick="S.aF='power';render(true)">사용 이상 <span class="n">${cnt('power')}</span></button></div>
    <div class="box" style="margin-top:12px;padding:15px 16px;display:grid;gap:10px;font-size:12.5px;color:var(--ink2)">
-    <div style="display:flex;gap:8px;align-items:center">${'<span class="cat safety">'+I('shield')+'전기안전</span>'}<span>누설전류·온도·수신 끊김 등 <b style="color:var(--ink)">사고로 이어질 수 있는</b> 신호</span></div>
-    <div style="display:flex;gap:8px;align-items:center">${'<span class="cat power">'+I('trend')+'전력 이상징후</span>'}<span>피크·대기전력·사용 패턴 변화 등 <b style="color:var(--ink)">요금·효율</b> 신호</span></div></div>
+    <div style="display:flex;gap:8px;align-items:flex-start">${'<span class="cat safety">'+I('shield')+'안전 이상</span>'}<span>누설전류·과열·통신 이상 등 <b style="color:var(--ink)">즉시 확인이 필요한 문제</b></span></div>
+    <div style="display:flex;gap:8px;align-items:flex-start">${'<span class="cat power">'+I('trend')+'사용 이상</span>'}<span>설치된 차단기 회로의 피크·과다 사용·평소와 다른 사용 패턴 등 <b style="color:var(--ink)">전력 사용 변화</b></span></div></div>
    ${sec(`처리할 알림 <span style="color:var(--ink3);font-weight:600">${open.length}</span>`,unread().length?`<button class="link" onclick="ackAll()">모두 확인</button>`:'')}${open.length?`<div class="box p0">${open.map(alertRow).join('')}</div>`:'<div class="note">처리할 알림이 없습니다.</div>'}
-   ${done.length?sec('조치 완료')+`<div class="box p0">${done.map(alertRow).join('')}</div>`:''}
    ${sec('알림 이력 데이터')}
-   <div class="box"><div class="kv3"><div><span>최근 30일</span><b class="num">${byAll.reduce((s,x)=>s+x[1],0)}건</b></div><div><span>반복 알림</span><b class="num">${C.alerts.filter(a=>repN(a)>1).length}건</b></div><div><span>반복 부하</span><b class="num">${byAll.filter(x=>x[1]>2).length}곳</b></div></div>
-    <div class="gap"></div>${byLoad.map(([id,n],i)=>`<div style="display:flex;align-items:center;gap:8px;padding:6px 0;font-size:14px"><span class="rank">${i+1}</span><span style="flex:1">${esc(ldOf(id).name)}</span><span class="num" style="color:var(--ink2)">${n}건</span></div>`).join('')}
-    <div class="ai">${I('spark')}<span>알림 유형·위험도·발생 위치·시간·반복 여부를 함께 기록합니다. 이 이력은 향후 AI 이상징후 탐지와 설비별 위험도 분석의 기초 데이터로 활용됩니다.</span></div></div>
+   <div class="box"><div class="kv3"><div><span>최근 30일</span><b class="num">18건</b></div><div><span>반복 알림</span><b class="num">4건</b></div><div><span>반복 부하</span><b class="num">2곳</b></div></div>
+    <div class="note" style="margin-top:14px">알림 유형·위험도·분전반·차단기 회로·발생 시간·반복 여부를 함께 기록합니다.</div></div>
   </div>`;
 };
 function lineChart(a){
@@ -889,24 +888,24 @@ function lineChart(a){
   let s=`<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="추이">`;
   [0,1].forEach(q=>{const vv=mn+(mx-mn)*q,yy=y(vv);s+=`<line class="grid" x1="${L}" x2="${W-Rr}" y1="${yy}" y2="${yy}"/><text class="yl" x="${L-5}" y="${yy+3}" text-anchor="end">${fmt(vv,vv<10?1:0)}</text>`});
   if(th&&th[0]<=mx)s+=`<line class="ref" x1="${L}" x2="${W-Rr}" y1="${y(th[0])}" y2="${y(th[0])}"/><text class="reft" x="${L+4}" y="${y(th[0])-4}">주의 기준 ${fmt(th[0],th[0]%1?1:0)}${a.unit}</text>`;
-  if(a.ref)s+=`<line class="bline" x1="${L}" x2="${W-Rr}" y1="${y(a.ref[0])}" y2="${y(a.ref[0])}"/><text class="yl" x="${W-Rr}" y="${y(a.ref[0])-5}" text-anchor="end">${a.ref[1]}</text>`;
+  if(a.ref)s+=`<line class="bline" x1="${L}" x2="${W-Rr}" y1="${y(a.ref[0])}" y2="${y(a.ref[0])}"/><text class="yl" x="${L+4}" y="${y(a.ref[0])-5}">${a.ref[1]}</text>`;
   if(th&&th[1]<=mx)s+=`<line class="ref" style="stroke:var(--red)" x1="${L}" x2="${W-Rr}" y1="${y(th[1])}" y2="${y(th[1])}"/>`;
   s+=`<polyline class="aline" style="stroke:${col}" points="${v.map((q,i)=>`${x(i).toFixed(1)},${y(q).toFixed(1)}`).join(' ')}"/><circle class="end" style="stroke:${col}" cx="${x(v.length-1)}" cy="${y(v[v.length-1])}" r="4.5"/>`;
   const lb=a.slab||[];lb.forEach((t,i)=>{s+=`<text class="ax" x="${L+i*(W-L-Rr)/Math.max(1,lb.length-1)}" y="${H-4}" text-anchor="${i===0?'start':i===lb.length-1?'end':'middle'}">${t}</text>`});
   return `<div class="chart">${s}</svg></div>`;
 }
 function openAlert(id){
-  const a=C.alerts.find(x=>x.id===id),l=ldOf(a.load);
+  const a=C.alerts.find(x=>x.id===id);
   if(a.status==='미확인'){a.status='확인';persistA(a);render(true)}
   sheet('알림 상세',`<div class="gap"></div>
-   <div class="box"><div style="display:flex;gap:6px;flex-wrap:wrap">${catTag(a)}<span class="pill ${sevCls(a)}">위험도 ${sevTxt(a)}</span></div><h3 style="font-size:20px;font-weight:800;margin:10px 0 2px">${esc(l.name)} ${esc(a.kind)}</h3><div style="color:var(--ink2);font-size:14px">${esc(a.val)}</div></div>
+   <div class="box"><div style="display:flex;gap:6px;flex-wrap:wrap">${catTag(a)}<span class="pill ${sevCls(a)}">위험도 ${sevTxt(a)}</span></div><h3 style="font-size:20px;font-weight:800;margin:10px 0 2px">${esc(a.title)}</h3><div style="color:var(--ink2);font-size:14px">${esc(a.val)}</div></div>
    <div class="gap"></div><div class="facts">
-    <div><span>알림 유형</span><b>${a.cat==='safety'?'전기안전':'전력 이상징후'}</b></div><div><span>위험도</span><b>${sevTxt(a)}</b></div>
-    <div><span>발생 위치</span><b>${C.panel} · ${esc(l.name)} ${l.id}</b></div><div><span>발생 시간</span><b>${esc(a.time)}</b></div>
-    <div><span>반복 여부</span><b>${repN(a)>1?`반복 · 7일간 ${repN(a)}회`:repN(a)===1?'최근 7일 1회':'첫 발생'}</b></div><div><span>조치 필요성</span><b>${['관찰','점검 권장','즉시 조치'][a.need]}</b></div></div>
-   ${sec('발생 추이')}<div class="box">${lineChart(a)}</div>
-   ${sec('최근 7일 반복')}<div class="box ${sevCls(a)}"><div class="reps">${a.rep.map(v=>`<i class="${v?'on':''}"></i>`).join('')}</div><div class="reps-l"><span>6일 전</span><span>오늘</span></div><div class="note">${repN(a)>1?`같은 부하에서 ${repN(a)}일 반복됐습니다. 일시적 현상이 아닐 가능성이 높습니다.`:'최근 7일 동안 반복되지 않았습니다.'}</div></div>
-   ${sec('원인 및 조치 필요성')}<div class="box"><div style="font-size:14px;line-height:1.65;color:var(--ink2)">${esc(a.cause)}</div><div class="reco">${I('tools')}<span><b>권장 조치</b><br>${esc(a.act)}</span></div></div>
+    <div><span>알림 유형</span><b>${a.cat==='safety'?'안전 이상':'사용 이상'}</b></div><div><span>위험도</span><b>${sevTxt(a)}</b></div>
+    <div><span>발생 위치</span><b>${esc(a.loc)}</b></div><div><span>발생 시간</span><b>오늘 ${esc(a.time)}</b></div>
+    <div><span>반복 여부</span><b>${repN(a)>1?`반복 · 7일간 ${repN(a)}회`:repN(a)===1?'최근 7일 1회':'첫 발생'}</b></div><div><span>조치 필요성</span><b>${needTxt(a)}</b></div></div>
+   ${a.unit?`${sec('발생 추이')}<div class="box">${lineChart(a)}</div>`:''}
+   ${sec('최근 7일 반복')}<div class="box ${sevCls(a)}"><div class="reps">${a.rep.map(v=>`<i class="${v?'on':''}"></i>`).join('')}</div><div class="reps-l"><span>6일 전</span><span>오늘</span></div><div class="note">${repN(a)>1?`같은 위치에서 ${repN(a)}일 반복됐습니다. 일시적 현상이 아닐 가능성이 높습니다.`:'최근 7일 동안 반복되지 않았습니다.'}</div></div>
+   ${a.cause?`${sec('원인 및 조치 필요성')}<div class="box"><div style="font-size:14px;line-height:1.65;color:var(--ink2)">${esc(a.cause)}</div><div class="reco">${I('tools')}<span><b>권장 조치</b><br>${esc(a.act)}</span></div></div>`:''}${a.memo?`${sec('조치 내역')}<div class="box" style="font-size:14px;line-height:1.65;color:var(--ink2)">${esc(a.memo)}</div>`:''}
 `);
 }
 function ackAll(){unread().forEach(a=>{a.status='확인';persistA(a)});render(true);hud('미확인 알림을 모두 확인했습니다')}
@@ -922,8 +921,8 @@ R.control=()=>{
 function askSw(id){const l=ldOf(id),off=l.on;
   sheet(off?'원격 차단':'전원 복구',`<div class="gap"></div><div class="box"><b style="font-size:18px">${esc(l.name)}</b><div style="color:var(--ink2);font-size:14px;margin-top:6px;line-height:1.6">${off?`${esc(l.name)} 회로 전원이 즉시 꺼집니다. 연결된 설비가 멈춥니다.`:`${esc(l.name)} 회로에 전원을 다시 공급합니다. 원인 조치가 끝났는지 먼저 확인하세요.`}</div></div>
    <div class="gap2"></div><button class="btn ${off?'btn-d':'btn-p'}" onclick="runSw('${id}')">${I('power')}${off?'차단 실행':'복구 실행'}</button><div class="gap"></div><button class="btn btn-s" onclick="closeSheet()">취소</button>`)}
-function runSw(id){const l=ldOf(id);l.on=!l.on;SW[id]=l.on;ls.set('sw',SW);closeSheet();render(true);hud(`${l.name} ${l.on?'복구':'차단'} 완료 · 장치 응답 정상`)}
-function askAll(){sheet('전체 차단',`<div class="gap"></div><div class="box" style="color:var(--ink2);font-size:14px;line-height:1.6">${C.panel}의 차단 가능한 기기 ${C.loads.length}대 전원이 모두 꺼집니다.</div><div class="gap2"></div><button class="btn btn-d" onclick="C.loads.forEach(l=>{l.on=false;SW[l.id]=false});ls.set('sw',SW);closeSheet();render(true);hud('전체 차단 완료')">${I('power')}전체 차단 실행</button><div class="gap"></div><button class="btn btn-s" onclick="closeSheet()">취소</button>`)}
+function runSw(id){const l=ldOf(id);l.on=!l.on;SW[id]=l.on;ls.set('sw',SW);closeSheet();render(true);hud(`${l.name} 설정 상태가 변경되었습니다`)}
+function askAll(){sheet('전체 차단',`<div class="gap"></div><div class="box" style="color:var(--ink2);font-size:14px;line-height:1.6">${C.panel}의 차단 가능한 기기 ${C.loads.length}대 전원이 모두 꺼집니다.</div><div class="gap2"></div><button class="btn btn-d" onclick="C.loads.forEach(l=>{l.on=false;SW[l.id]=false});ls.set('sw',SW);closeSheet();render(true);hud('전체 설정 상태가 변경되었습니다')">${I('power')}전체 차단 실행</button><div class="gap"></div><button class="btn btn-s" onclick="closeSheet()">취소</button>`)}
 
 /* ---------- 보안 및 관리자 (기존 화면) ---------- */
 R.admin=()=>hd('보안 및 관리자')+`<div class="scr"><div class="gap"></div>
@@ -953,10 +952,9 @@ render();
 setTimeout(()=>{const sp=document.getElementById('splash');sp.classList.add('out');setTimeout(()=>sp.remove(),500)},1100);
 // 지금 kW 실시간 흔들림 + 마지막 갱신 시각
 setInterval(()=>{const k=document.getElementById('liveKw');if(k){const v=curKw()+Math.round((Math.random()-.5)*4);k.textContent=fmt(v)+' kW';k.classList.remove('blink');void k.offsetWidth;k.classList.add('blink');upd0=Date.now()}},5000);
-setInterval(()=>{const u=document.getElementById('upd');if(u){const sec=Math.round((Date.now()-upd0)/1000);u.textContent=sec<5?'방금 업데이트':`${sec}초 전 업데이트`}},1000);
 // 푸시 알림 배너 (세션당 1회)
-function showPush(){const a=C.alerts.find(x=>x.status==='미확인'&&x.cat==='safety');if(!a)return;const p=document.getElementById('push'),l=ldOf(a.load);
-  p.innerHTML=`<img src="${LOGO}" alt=""><span class="pb"><span class="ph"><b>Dr.ELEC</b><em>지금</em></span><b>${esc(l.name)} ${esc(a.kind)}</b><span>${esc(a.val)} · 주의 단계입니다. 눌러서 확인하세요.</span></span>`;
+function showPush(){const a=C.alerts.find(x=>x.status==='미확인'&&x.cat==='safety');if(!a)return;const p=document.getElementById('push');
+  p.innerHTML=`<img src="${LOGO}" alt=""><span class="pb"><span class="ph"><b>Dr. ELEC</b><em>지금</em></span><b>${esc(a.title)}</b><span>${esc(a.loc)} · ${esc(a.val)} · 눌러서 확인하세요.</span></span>`;
   p.hidden=false;requestAnimationFrame(()=>p.classList.add('show'));
   p.onclick=()=>{hidePush();S.stack=['home','alerts'];render(false,'fwd');setTimeout(()=>openAlert(a.id),250)};
   setTimeout(hidePush,6000)}
